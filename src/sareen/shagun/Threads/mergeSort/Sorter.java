@@ -39,14 +39,14 @@ public class Sorter implements Callable<List<Integer>> {
         }
 
         //now we have left and right arrays, lets merge them using threads
-        ExecutorService es = Executors.newCachedThreadPool();
+        //ExecutorService es = Executors.newCachedThreadPool();
 
-        Sorter leftSorter = new Sorter(leftArrList, es);
-        Sorter rightSorter = new Sorter(rightArrList, es);
+        Sorter leftSorter = new Sorter(leftArrList, executorService);
+        Sorter rightSorter = new Sorter(rightArrList, executorService);
 
         //fetch future object once array is sorted
-        Future<List<Integer>> leftFuture =  es.submit(leftSorter);
-        Future<List<Integer>> rightFuture = es.submit(rightSorter);
+        Future<List<Integer>> leftFuture =  executorService.submit(leftSorter);
+        Future<List<Integer>> rightFuture = executorService.submit(rightSorter);
 
         List<Integer> leftSortedArr = leftFuture.get();  // if future is not yet done, code will wait here till the time future is completed
         List<Integer> rightSortedArr = rightFuture.get();
