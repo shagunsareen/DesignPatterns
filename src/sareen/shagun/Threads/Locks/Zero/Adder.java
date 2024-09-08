@@ -10,7 +10,7 @@ public class Adder implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < 10000; i++) {
-            //synchronized (this) {
+            //synchronized (count) {
                 this.count.value += i;
             //}
         }
