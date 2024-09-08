@@ -5,7 +5,8 @@ import java.util.concurrent.locks.Lock;
 public class Adder implements Runnable{
 
     private Count count;
-    private Lock lock;
+    private Lock lock; //this is mutual exclusion where same lock object should be used by all tasks which are using shared variable so that the single loclk
+    //should know which task has the lock at present
 
     public Adder(Count count, Lock lock) {
         this.count = count;

@@ -11,9 +11,8 @@ public class Adder implements Runnable{
 
     @Override
     public void run() {
-
         for(int i=0; i<100; i++){
-            synchronized (count){
+            synchronized (count){ //this basically means count.lock(); and count.unlock() in line 19. So it is equivalent to using lock function but not on lock object but on java's object i.e. count as every java object has implicit lock internally
                 this.count.value += i;
                 System.out.println("Added : " +count.value);
             }
